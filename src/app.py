@@ -30,10 +30,6 @@ def inference(request):
 
     if image_byte_string == None and image_url == None:
         return json({'message': "No image provided"})
-
-    if text == None and texts ==  None:
-        return json({'message': "No text provided"})
-
     
     image_bytes = None
 
@@ -49,6 +45,8 @@ def inference(request):
     image_encoding = encode_image(image_bytes,model)
 
     response = {}
+
+    response["embedding"] = image_encoding
 
     if texts != None:
         sims = []
